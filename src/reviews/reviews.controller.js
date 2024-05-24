@@ -2,41 +2,57 @@ const service = require("./reviews.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const methodNotAllowed = require("../errors/methodNotAllowed");
 
-async function reviewExists(request, response, next) {
-  // TODO: Write your code here
-
-  next({ });
-}
-
-async function destroy(request, response) {
-  // TODO: Write your code here
-
-}
-
-async function list(request, response) {
-  // TODO: Write your code here
-
-  response.json({  });
-}
-
-function hasMovieIdInPath(request, response, next) {
-  if (request.params.movieId) {
+async function reviewExists(req, res, next) {
+  // TODO: Add your code here.
+  const { movieId } = req.params;
+  const movie = await service.read(movieId)
+  if (movie) {
+    res.locals.movie = movie;
     return next();
   }
-  methodNotAllowed(request, response, next);
+  return next({ status: 404, message: `Post cannot be found.` });
 }
 
-function noMovieIdInPath(request, response, next) {
-  if (request.params.movieId) {
-    return methodNotAllowed(request, response, next);
+async function destroy(req, res) {
+  // TODO: Write your code here
+
+}
+
+async function list(req, res) {
+  // TODO: Write your code here
+
+  res.json({  });
+}
+
+function hasMovieIdInPath(req, res, next) {
+  if (req.params.movieId) {
+    return next();
+  }
+  methodNotAllowed(req, res, next);
+}
+
+function noMovieIdInPath(req, res, next) {
+  if (req.params.movieId) {
+    return methodNotAllowed(req, res, next);
   }
   next();
 }
 
-async function update(request, response) {
+async function update(req, res) {
   // TODO: Write your code here
 
 }
+
+//async function update(req, res) {
+//  const updatedPost = {
+//    ...req.body.data,
+//    post_id: res.locals.post.post_id,
+//  };
+//  const data = await service.update(updatedPost);
+//  if(data) {
+//    res.json({ data: data[0] });
+//  }
+//}
 
 module.exports = {
   destroy: [
