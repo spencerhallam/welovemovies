@@ -7,7 +7,7 @@ const reduceMovies = reduceProperties("theater_id", {
   runtime_in_minutes: ["movies", null, "runtime_in_minutes"],
   rating: ["movies", null, "rating"],
   description: ["movies", null, "description"],
-  image_url: ["movies", null, "image_url"],
+  image_url: ["movies", null, "image_url"]
 });
 
 async function list() {
@@ -22,5 +22,5 @@ async function list() {
 }
 
 module.exports = {
-  list,
+  list
 };
