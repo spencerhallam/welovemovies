@@ -2,7 +2,6 @@ const service = require("./movies.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 async function movieExists(req, res, next) {
-  // TODO: Add your code here.
   const { movieId } = req.params;
   const movie = await service.read(movieId)
   if (movie) {
@@ -13,12 +12,10 @@ async function movieExists(req, res, next) {
 }
 
 async function read(req, res) {
-  // TODO: Add your code here
     res.json({ data: res.locals.movie });
 }
 
 async function list(req, res) {
-  // TODO: Add your code here.
   const movies = await service.list(req.query.is_showing);
   if(movies) {  
     res.json({ data: movies});

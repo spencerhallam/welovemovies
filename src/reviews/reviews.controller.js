@@ -13,7 +13,6 @@ const addCritic = mapProperties({
 });
 
 async function reviewExists(req, res, next) {
-  // TODO: Write your code here
   const { reviewId } = req.params;
   const review = await service.read(reviewId)
   if (review) {
@@ -24,7 +23,6 @@ async function reviewExists(req, res, next) {
 }
 
 async function destroy(req, res, next) {
-  // TODO: Write your code here
   await service
     .destroy(res.locals.review.review_id)
     .then(() => res.sendStatus(204))
@@ -32,7 +30,6 @@ async function destroy(req, res, next) {
 }
 
 async function list(req, res) {
-  // TODO: Write your code here
   const reviews = await service.list(req.params.movieId);
   if(reviews) {  
     const formattedReviews = Object.keys(reviews).map(key => addCritic(reviews[key]));

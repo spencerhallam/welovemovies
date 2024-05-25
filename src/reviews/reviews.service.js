@@ -2,12 +2,10 @@ const db = require("../db/connection");
 const tableName = "reviews";
 
 async function destroy(reviewId) {
-  // TODO: Write your code here
   return db(tableName).where({ review_id: reviewId }).del();
 }
 
 async function list(movie_id) {
-  // TODO: Write your code here
   if(movie_id) {
     return db("reviews")
       .join("critics", "reviews.critic_id", "critics.critic_id")
@@ -22,7 +20,6 @@ async function list(movie_id) {
 }
 
 async function read(reviewId) {
-  // TODO: Write your code here
   return db(tableName)
     .select("*")
     .where({review_id: reviewId})
